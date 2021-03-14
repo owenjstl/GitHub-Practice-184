@@ -1,0 +1,163 @@
+---
+title: "STAT 184 Homework Exercises" 
+subtitle: "DataComputing Chapters 5 & 6"
+author: "Yaowen Tan"
+output: html_notebook
+---
+
+## Assigned Exercises
+
+- DC Chapter 5 Exercises：All
+- DC Chapter 6 Exercises: 1-10
+
+
+```{R}
+memory.limit(102400)
+install.packages("esquisse")
+```
+
+## Front Matter
+
+```{r}
+rm(list = ls())
+
+#install.packages("esquisse")
+#install.packages("tidyverse")
+#library(tidyverse)
+#library(esquisse)
+#library(mosaicData)
+#library(dcData)
+```
+
+
+
+## Chapter 5 Exercises
+
+### Problem 5.1
+```{r}
+
+
+data("CPS85",package = "mosaicData")
+#esquisser(CPS85)
+ggplot(CPS85) +
+ aes(x = sex, y = wage, fill = married) +
+ geom_boxplot() +
+ scale_fill_hue() +
+ theme_minimal() +
+ facet_wrap(vars(race))
+
+```
+
+### Problem 5.2
+
+```{r}
+data("NCHS",package = "dcData")
+ggplot(NCHS) +
+ aes(x = bmi, fill = followup, colour = sex) +
+ geom_density(adjust = 1L) +
+ scale_fill_gradient() +
+ scale_color_hue() +
+ theme_minimal() +
+ facet_wrap(vars(pregnant))
+
+
+
+```
+
+
+
+### Problem 5.3
+
+```{r}
+
+data("CPS85",package = "mosaicData")
+#esquisser(CPS85)
+frame <- CPS85 %>% 
+ggplot(aes(x = age, y = wage)) 
+frame + geom_point(aes(color = married)) + facet_wrap(~sector) + coord_cartesian(xlim = c(20, 50), ylim = c(0,35))
+```
+## Chapter 6 Exercises
+
+
+### Problem 6.1
+
+
+1. adhesion growth
+
+2  No
+
+3  The potision and size are suitable in each graph.
+
+### Problem 6.2
+
+1 y-axis interpolation show log2Enzyme, x-axis shows different kinds of Gene. Colorful dots shows that different molecule. And black dot, white dot shows that Flux is equal to 0 or greater than 0.
+
+2 different colorful dots shows different molecule and if it's air-corn, its Flux is greater than 0, or eqaul to 0
+
+3 Geme amd Emzyme
+
+4 Gene and Target
+
+### Problem 6.3
+
+1 Star- Signif, the value of center - polarity
+
+2 X: Types of Protein, Y: log2 ratio low vs. high cell density
+
+3 yes
+
+4 the explain of the value or protein
+
+### Problem 6.4
+
+1 time vs The geographical position
+
+2 different color shows different platforms, different lines shows the trains depart in different time.
+
+3 Time, Depart time
+
+4 under the line
+
+### Problem 6.5
+
+B
+
+### Problem 6.6
+
+D
+
+### Problem 6.7
+
+C
+
+### Problem 6.8
+
+A,B,E
+
+### Problem 6.9
+
+```{r}
+small <-
+  NCHS %>%
+  sample_n(size=5000)
+#esquisser(small)
+ggplot(small) +
+ aes(x = bmi, y = weight, colour = smoker) +
+ geom_point(size = 1L) +
+ scale_color_hue() +
+ theme_minimal()
+```
+
+### Problem 6.10
+
+1 Concentric circles
+
+2 The type of microbial. Check them whether belong to the one Categories.
+
+
+
+
+
+
+
+
