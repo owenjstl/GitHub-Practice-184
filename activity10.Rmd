@@ -1,0 +1,84 @@
+---
+title: "Activity: Popular Names"
+author: "Yaowen Tan"
+date: "2021/3/1"
+output: html_notebook
+---
+
+
+
+# Set Up
+
+```{r}
+# clean up
+rm(list = ls())
+
+# packages in use
+library(tidyverse)
+library(dcData)
+```
+
+
+```{r}
+# data intake 
+data("BabyNames")
+acdata=data("BabyNames")
+help("BabyNames")
+BabyNames %>%
+  head()
+```
+
+
+
+# Activity
+
+**Goal**: By the end of the activity, each team will create a graph similar to the Figure in the book showing ups and downs in the popularity of four names (your own & at least three additional names) according to the U.S. social security administration provided in the `dcData` package 
+
+
+### Step 1
+```{r}
+BabyNames %>%
+  head()
+glimpse(BabyNames)
+```
+
+
+This dataset records yearly lists of names given to baby. Each case shows the sex, the number of babies given that name and of that sex, and the year of birth for certain given name. Names assigned to fewer than five children of one sex in any year are not listed, presumably out of privacy concerns.
+
+### Step 3
+we remove those other names and keep "Abraham, Franklin, Woodrow". which is a straightforward but necessary step to draw the graphic. And "sex" variable doesn't appear at all in the graph.
+
+The "Popularity" is similar to corresponding variables in the raw data table. It might be transformed by female given name and male given name.
+
+
+### Step 4
+
+Yes, we filtered and kept the given name which we want to use to display.
+
+Yes, add female given name and male given name together
+
+Yes. "Popularity" It might be transformed by counting female given name and male given name  in order to find out the popularity of given name. And there's no new variable exists
+
+### Step 5
+First, we should use select and filter function to select filter out the cases we need which name equals to Franklin, Abraham and Woodrow, and then use mutate function to add a new variable based on the existing ones (including count,year, and the given name). Finally we will get the hypothesized glyph-ready data table.
+
+
+### Step 7
+```{r}
+BabyNames %>%
+  filter(name %in% c("Yaowen", "Alice", "Bobby", "Cindy"))%>%
+  group_by(name, year) %>%
+  summarise(total = sum(count))
+```
+
+
+
+```{r}
+PopName%>% 
+  ggplot(aes(x = year, y = total, group = name)) +
+  geom_line( size = 1, alpha = 0.5, aes(color = name)) +
+  ylab("Popularity") + xlab("Year")
+```
+
+
+

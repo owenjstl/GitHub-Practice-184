@@ -1,0 +1,166 @@
+---
+title: "Ch 10 More Data Verbs"
+author: "Yaowen Tan"
+date: "2021/3/1"
+output: html_notebook
+---
+
+Assigned Exercises
+DC Chapter 10 Exercises: 10.1-10.7
+
+```{R}
+rm(list = ls())
+
+# packages in use
+library(tidyverse)
+library(dcData)
+data("BabyNames")
+
+```
+
+
+## Problem 10.1
+
+1 Summary Function
+
+2 Data Verbs
+
+3 Transfomation
+
+4 Reduction Function
+
+5 Data Verbs
+
+6 Data Verbs
+ 
+7 Data Verbs
+
+8 Data Verbs
+
+
+
+## Problem 10.2
+
+1 mutate()
+
+2 Arrange() and Desc()
+
+3 Filter()
+
+4 Select()
+
+5 Filter() and Rank()
+
+
+## Problem 10.3
+
+1 nrow()
+
+2 ncol() 
+
+3 help()
+
+4 library()
+
+5 group_by()
+
+## Problem 10.4
+
+1 Arrange()
+```{r}
+library(dplyr)  
+BabyNames %>%
+  arrange((count))
+```
+
+2 
+```{r}
+BabyNames %>%
+  filter(sex == "F")
+```
+
+3 Filter()
+```{r}
+BabyNames %>%
+  filter(sex == "M")
+```
+
+4 summarise()
+
+```{r}
+BabyNames %>%
+  summarize(total = sum(count))
+```
+
+5 Select()
+```{r}
+BabyNames %>%
+  select(name, count)
+```
+
+## Problem 10.5
+
+1
+```{r}
+library(dplyr)  
+data("Minneapolis2013", package = "dcData")
+ Minneapolis2013 %>%
+  group_by(First, Second, Third, Precinct, Ward) %>%
+  filter(First==Second, First!=Third)%>%
+  summarise(total = n())%>%
+  arrange(desc(total))
+```
+
+1 274 people
+2 Mark Andrew, Undervote, and ABDUL M RAHAMAN "THE ROCK".
+3 Undervote
+
+
+```{r}
+data("Minneapolis2013", package = "dcData")
+ Minneapolis2013 %>%
+  group_by(First, Second, Third, Precinct, Ward) %>%
+  filter(First=="OLE SAVIOR", First!=Third)%>%
+  summarise(total = n())%>%
+  arrange(desc(total))
+```
+
+## Problem 10.6
+```{r}
+#data("diamonds")
+diamonds %>% 
+  group_by(color) %>% 
+  summarise_at(vars(carat), list(Carat_Color_mean = mean))
+```
+1, J
+
+```{r}
+#data("diamonds")
+diamonds %>% 
+  group_by(clarity) %>% 
+  summarise_at(vars(table), list(table_clarity_mean = mean))
+```
+
+2  I1 has the largest table per carat.
+
+
+
+## Problem 10.7 
+```{r}
+Minor<-
+  Minneapolis2013 %>%
+  group_by(First) %>%
+  summarise(count=n()) %>%
+  mutate(First = if_else(condition = (count < 5000), true = "minor", false= First))
+show(Minor)
+```
+
+```{r}
+library(tidyverse)
+library(dcData)
+library(mosaicData)
+data(CPS85)
+CPS85 %>%
+ ggplot(aes(x = age, y = wage)) %>%
+ geom_point()
+```
