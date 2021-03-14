@@ -225,5 +225,5 @@ plot(ZipDemography$Foreignborn, ZipDemography$SpeakalanguageotherthanEnglishatho
 b. We know that there are 50 states in U.S., which means that there a lot of people get B.A or higher degree. We can set the total population as denominator, and people who get B.A. or higher degree as partition so that the precent shows the level of education
 
 
-lll
+lll222
 
