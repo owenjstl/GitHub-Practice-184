@@ -35,6 +35,7 @@ CPS85 %>% ggplot(aes(y = wage, x = sex)) +
 ```
 
 ### Problem 15.2
+
 #### (1)
 I would say, according to the graph, the most likely height among the NCHS people is around 1.65 meters. 
 
@@ -62,7 +63,7 @@ Galton %>% ggplot(aes(y = mother, x = height)) +
 ### Problem 15.5
 part 1:
 
-1. yes, because it seems Fraction 65 and older increases as Fraction under 5 increases.      
+1. Yes, because it seems Fraction 65 and older increases as Fraction under 5 increases.      
 2. We can not conclude at this time because there are too few points and they are scattered around the level line. Needs more data to decide.
 
 
