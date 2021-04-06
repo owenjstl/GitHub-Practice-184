@@ -1,0 +1,75 @@
+---
+title: "STAT 184 Homework Exercises" 
+subtitle: "DataComputing Chapters 15"
+author: "Yaowen Tan"
+output: html_notebook
+---
+
+## Assigned Exercises
+
+- DC Ch 15 Exercises: 15.1-15.5
+
+
+## Front Matter
+ 
+```{r}
+# clean up workspace environment
+rm(list = ls())
+
+# all packages used for the assignment
+library(mosaicData)
+library(DataComputing)
+library(tidyverse)
+
+data("CPS85")
+data("Galton")
+```
+
+## Chapter 15 Exercises
+
+### Problem 15.1
+```{r}
+CPS85 %>% ggplot(aes(y = wage, x = sex)) + 
+  geom_boxplot(aes(fill = sex))
+```
+
+### Problem 15.2
+#### (1)
+I would say, according to the graph, the most likely height among the NCHS people is around 1.65 meters. 
+
+#### (2)
+For women, the most likely height is around 1.6 meters. For men, it's about 1.75 meters. 
+
+#### (3)
+The most likely BMI for a 40-year old is about 26 and for a 70-year old is about 27.
+
+### Problem 15.3
+```{r message=FALSE, warning=FALSE}
+CPS85 %>% ggplot(aes(y = wage, x = educ, color = sex)) +
+  stat_smooth(method = lm) +
+  geom_point() +
+  ylim(0,15)
+```
+
+### Problem 15.4
+```{r}
+Galton %>% ggplot(aes(y = mother, x = height)) +
+  geom_density_2d(color = "blue") +
+  facet_grid(~sex)
+```
+
+### Problem 15.5
+part 1:
+
+1. yes, because it seems Fraction 65 and older increases as Fraction under 5 increases.      
+2. We can not conclude at this time because there are too few points and they are scattered around the level line. Needs more data to decide.
+
+
+
+part 2: 
+
+1. Yes. It seems there's a negative relationship between Fraction 65 and older and Fraction under 5 
+
+2. The height of the confidence band with 20 ZIP codes is about twice as large as the height of the band with 80 ZIP codes    
+
+3. For 20 ZIP codes the width is about 0.222 and for 80 ZIP codes it's about 0.111. The ratio of the width of the two confidence bands seems correct but the individual result doesn't match with the graph output.  
