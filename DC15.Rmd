@@ -2,6 +2,7 @@
 title: "STAT 184 Homework Exercises" 
 subtitle: "DataComputing Chapters 15"
 author: "Yaowen Tan"
+date: "2021/4/5"
 output: html_notebook
 ---
 
